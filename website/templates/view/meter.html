@@ -1,0 +1,143 @@
+{% extends "view/base.html" %}
+{% block title %} meter {% endblock %}
+{% block head %}
+{{ super() }}
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+
+    }
+
+    .divContainer {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 90%;
+        height: 100vh;
+        flex-direction: column;
+    }
+
+    .balanceInfo {
+        width: 100%;
+        height: 40vh;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin-top: -80px;
+
+    }
+
+    .balanceInfo2 {
+        width: 100%;
+        height: 40vh;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin-top: -180px;
+    }
+
+    .box1,
+    .box2,
+    .box3 {
+        display: inline-block;
+        width: 200px;
+        height: 200px;
+        background-color:   rgb(69, 79, 209);
+        border: 4px solid coral;
+    }
+
+    .box1 h2,
+    .box2 h2,
+    .box3 h2 {
+        text-align: center;
+        margin: 10px;
+        color: white;
+    }
+
+    .box1 h1,
+    .box2 h1,
+    .box3 h1 {
+        text-align: center;
+        margin: 20px 10px 10px 10px;
+        color: #ff6288;
+
+    }
+
+    .box1 hr,
+    .box2 hr,
+    .box3 hr {
+        border: 2px solid coral;
+    }
+</style>
+
+{% endblock %}
+{% block content %}
+
+
+<section class="page-section bg-dark text-white">
+    <div class="container px-4 px-lg-5 text-center">
+        <h2 class="mb-4">Meter Information</h2>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur, recusandae!</p>
+    </div>
+</section>
+
+<div class="divContainer">
+    <div class="balanceInfo">
+        <span class="box1">
+            <h2> Balance </h2>
+            <hr>
+            <h1>100</h1>
+
+
+        </span>
+        <span class="box2">
+            <h2> Used units </h2>
+            <hr>
+            <h1> 00 </h1>
+        </span>
+        <span class="box3">
+            <h2> Usable units </h2>
+            <hr>
+            <h1> 00 </h1>
+        </span>
+
+    </div>
+
+    <div class="balanceInfo2">
+
+        <span class="box1">
+            <h2> Per unit </h2>
+            <hr>
+            <h1> 5 </h1>
+        </span>
+        <span class="box2">
+            <h2> Last recharge </h2>
+            <hr>
+            <h1> 00 </h1>
+        </span>
+        <span class="box3">
+            <h2> meter charge </h2>
+            <hr>
+            <h1> 15 </h1>
+        </span>
+
+    </div>
+
+</div>
+
+<!-- <div class="container">
+    <div class="row">
+        <div class="col-md-10">
+            <div class="card card-body">
+
+                <div class="alert alert-success">
+                    <h1><a href="">Billing Information Of Previous Month</a></h1>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div> -->
+{% endblock %}I
