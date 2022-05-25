@@ -155,53 +155,35 @@
 {% endblock %}
 {% block content %}
 
-<section class="page-section bg-warning text-white">
+<!-- <section class="page-section bg-warning text-white">
     <div class="container px-4 px-lg-5 text-center text-dark">
         <h2 class="mb-4">Recharge Card on meter</h2>
         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur, recusandae!</p>
     </div>
-</section>
+</section> -->
 
 
 <div class="divContainer">
     <div class="meterInfo">
 
         <div class="title">
-            <h2> Meter Info </h2>
+            <h2> Buy Token </h2>
         </div> 
+
+        <form action="/token" method="post" id="recharge">
         <div class="search">
             <div class="head">
-                <h3> Enter Meter No: </h3>
+                <h3> Recharge Amount: </h3>
             </div>
             <form method="GET" action="/search/" class="searchbar">
-            <input type="search" placeholder="Enter meter no" arial-label = "Search" name='query' id='query'>
+            <input type="search" name="amount" placeholder="Recharge Amount" arial-label = "Search" name='query' id='query'>
         </form>
       
         </div>
         <div class="button">
-           <button> Search </button>
-
+           <button form="recharge" type="submit"> Buy </button>
         </div>
-    
-    </div>
-    <div class="recharge">
-        <div class="title">
-            <h2> Recharge </h2>
-        </div>
-        <div class="search"> 
-            <div class="head">
-                <h3> Enter Meter No: </h3>
-            </div>
-            <input type="search" placeholder="Enter meter no">
-            <div class="head">
-                <h3> Enter Token No: </h3>
-            </div>
-                <input type="search" placeholder="Enter token no">
-            </div>
-        <!-- <div class="button">
-           <button> Search </button>
-        </div>  -->
-
+        </form>
     </div>
 </div>
 

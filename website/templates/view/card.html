@@ -1,0 +1,216 @@
+{% extends "view/base.html" %}
+{% block title %} Recharge Card {% endblock %}
+{% block head %}
+{{ super() }}
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+
+    }
+
+    .divContainer {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .meterInfo {
+        width: 300px;
+        height: 300px;
+        background-color: aquamarine;
+        border: 2px solid coral;
+    }
+
+    .meterInfo .title {
+        width: 100%;
+        height: 50px;
+        background-color: black;
+        color: white;
+    }
+
+    .meterInfo .title h2 {
+        text-align: center;
+        text-transform: uppercase;
+        line-height: 40px;
+    }
+
+    .meterInfo .search {
+        width: 100%;
+        height: 150px;
+        box-sizing: border-box;
+        background-color: teal;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+    }
+
+    .search>.head {
+        text-align: center;
+        text-transform: uppercase;
+        margin-top: 20px;
+
+
+    }
+
+    .meterInfo .search input {
+        text-align: center;
+        width: 220px;
+        height: 50px;
+        margin: 30px 30px 30px 40px;
+
+    }
+
+    .meterInfo .button {
+        width: 100%;
+        height: 50px;
+        color: white;
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .button button {
+        width: 100px;
+        height: 30px;
+        border-radius: 5px;
+        border: none;
+        background-color: royalblue;
+        color: white;
+        text-transform: uppercase;
+        box-shadow: 2px 2px 10px black;
+
+    }
+
+    .button button:hover {
+        background-color: white;
+        color: royalblue;
+        border: 3px solid royalblue;
+    }
+
+
+    .recharge {
+        width: 300px;
+        height: 400px;
+        background-color: aquamarine;
+        border: 2px solid coral;
+    }
+
+    .recharge .title {
+        width: 100%;
+        height: 50px;
+        background-color: black;
+        color: white;
+    }
+
+    .recharge .title h2 {
+        text-align: center;
+        text-transform: uppercase;
+        line-height: 40px;
+    }
+
+    .recharge .search {
+        width: 100%;
+        height: 220px;
+        box-sizing: border-box;
+        background-color: rgb(16, 154, 189);
+        color: white;
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+    }
+
+    .search>.head {
+        text-align: center;
+        text-transform: uppercase;
+        margin-top: 20px;
+
+
+    }
+
+    .recharge .search input {
+        text-align: center;
+        width: 220px;
+        height: 40px;
+        margin: 30px 30px 30px 40px;
+
+    }
+
+    .recharge .button {
+        width: 100%;
+        height: 50px;
+        color: white;
+        margin-top: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+</style>
+
+{% endblock %}
+{% block content %}
+
+<section class="page-section bg-info text-white">
+    <div class="container px-4 px-lg-5 text-center text-dark">
+        <h2 class="mb-4">Recharge Card on meter</h2>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur, recusandae!</p>
+    </div>
+</section>
+
+
+<div class="divContainer">
+    <div class="meterInfo">
+
+        <form action="/meter" method="post" id="meter">
+            <div class="title">
+                <h2> Meter Info </h2>
+            </div>
+            <div class="search">
+                <div class="head">
+                    <h3> Enter Meter No: </h3>
+                </div>
+
+                <input type="search" placeholder="Enter meter no" arial-label="Search" name="meter_number" id='query'>
+
+            </div>
+            <div class="button">
+                <button form="meter"> view details </button>
+            </div>
+
+        </form>
+    </div>
+    <div class="recharge">
+        <div class="title">
+            <h2> Recharge </h2>
+        </div>
+        <form action="/card" method="post" id="recharge">
+            <div class="search">
+                <div class="head">
+                    <h3> Enter Meter No: </h3>
+                </div>
+                <input type="text" name="meter_number" placeholder="Enter meter no">
+                <div class="head">
+                    <h3> Enter Token No: </h3>
+                </div>
+                <input type="text" name="token" placeholder="Enter token no">
+            </div>
+            <br>
+            <br>
+            <div class="button">
+                <button form="recharge"> Recharge </button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+
+
+{% endblock %}

@@ -16,16 +16,17 @@ def login():
         password=request.form.get("password")
 
         cur=db.connection.cursor()
-        cur.execute("SELECT * FROM users")
-        users=cur.fetchall()
+        cur.execute("SELECT * FROM users where username=%s and password=%s",(username,password,))
+        user=cur.fetchone()
 
-        for user in users:
-            if username==user[1] and password==user[4]:
-                session["user"]=username
-                flash("Logged in successFully!",category="success")
-                return redirect("/profile")
-            else:
-                flash("wrong username or password",category="error")
+
+        if user:
+            session["user"]=username
+            session["meter"]=user[7]
+            flash("Logged in successFully!",category="success")
+            return redirect("/profile")
+        else:
+            flash("wrong username or password",category="error")
 
     return render_template('auth/login.html')
 
@@ -42,25 +43,47 @@ def signup():
     if request.method=="POST":
         username=request.form.get("username")
         email=request.form.get("email")
+        meter_number=request.form.get("meter_number")
         password1=request.form.get("password1")
         password2=request.form.get("password2")
 
+        print(type(meter_number))
+        cur=db.connection.cursor()
+        cur.execute("SELECT * FROM users where username=%s",(username,))
+        user=cur.fetchone()
 
-        if len(username)<5:
-            flash("username must be greater than 4 words",category="error")
+        cur=db.connection.cursor()
+        cur.execute("SELECT * FROM users where meter_number=%s",(meter_number,))
+        m=cur.fetchone()
+
+
+        if user:
+            flash("Username already exist",category="error")
+
+        elif len(username)<5:
+            flash("Username must be greater than 4 words",category="error")
 
         elif len(email)<5:
-            flash("email must be greater than 4 words",category="error")
+            flash("Email must be greater than 4 words",category="error")
+
+        elif m:
+            flash("Meter number already exist",category="error")
+
+        elif "bs-" != meter_number[0:3]:
+            flash("Your prefix should be bs-",category="error")
+
+        elif len(meter_number)<8:
+            flash("Meter number must be greater than 8 digit",category="error")
 
         elif len(password1)<8:
-            flash("password must be greater than 8 digit",category="error")
+            flash("Password must be greater than 8 digit",category="error")
 
         elif password1!=password2:
-            flash("password doesn't match",category="error")
+            flash("Password doesn't match",category="error")
 
         else:
             cur=db.connection.cursor()
-            cur.execute("INSERT INTO users(username,email,password,date) VALUES(%s,%s,%s,%s)",(username,email,password1,datetime.now()))
+            cur.execute("INSERT INTO users(username,email,password,date,meter_number) VALUES(%s,%s,%s,%s,%s)",(username,email,password1,datetime.now(),meter_number,))
             db.connection.commit()
             cur.close()
             flash("Account created successfully!",category="success")

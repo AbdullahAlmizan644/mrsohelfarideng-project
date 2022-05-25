@@ -76,31 +76,32 @@
 {% block content %}
 
 
-<section class="page-section bg-dark text-white">
+<section class="page-section bg-info text-white">
     <div class="container px-4 px-lg-5 text-center">
-        <h2 class="mb-4">Meter Information</h2>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur, recusandae!</p>
+        <h1 class="mb-4">Meter Info</h1>
+        <h3>Name : {{ session["user"] }}</h3><br>
+        <h4>Meter Number : {{ data[7] }}</h4>
     </div>
 </section>
+
 
 <div class="divContainer">
     <div class="balanceInfo">
         <span class="box1">
             <h2> Balance </h2>
             <hr>
-            <h1>100</h1>
-
+            <h1>{{data[6]}}</h1>
 
         </span>
         <span class="box2">
-            <h2> Used units </h2>
+            <h2> last recharge </h2>
             <hr>
-            <h1> 00 </h1>
+            <h1> {{ data[8]}} </h1>
         </span>
         <span class="box3">
-            <h2> Usable units </h2>
+            <h2> Meter charge </h2>
             <hr>
-            <h1> 00 </h1>
+            <h1> {{ data[12]}} </h1>
         </span>
 
     </div>
@@ -110,22 +111,24 @@
         <span class="box1">
             <h2> Per unit </h2>
             <hr>
-            <h1> 5 </h1>
+            <h1> {{ data[11] }} </h1>
         </span>
         <span class="box2">
-            <h2> Last recharge </h2>
+            <h2> Used units </h2>
             <hr>
-            <h1> 00 </h1>
+            <h1> {{ data[10]}} </h1>
         </span>
         <span class="box3">
-            <h2> meter charge </h2>
+            <h2>   Usable units</h2>
             <hr>
-            <h1> 15 </h1>
+            <h1> {{ data[9] }}  </h1>
         </span>
 
     </div>
 
 </div>
+
+
 
 <!-- <div class="container">
     <div class="row">
