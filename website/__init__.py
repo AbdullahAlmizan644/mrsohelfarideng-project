@@ -1,11 +1,12 @@
 from flask import Flask,Blueprint
 from flask_mysqldb import MySQL
+from flask_ckeditor import CKEditor
 
 db=MySQL()
-
+ckeditor=CKEditor()
 
 def create_app():
-    UPLOAD_FOLDER = '/home/ares/sohel-project/website/static/image'
+    UPLOAD_FOLDER = 'C:\\Users\\abdul\\Videos\\mrsohelfarideng-project\\website\\static\\image'
     ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
     app=Flask(__name__)
     app.config['UPLOAD_FOLDER']=UPLOAD_FOLDER
@@ -17,6 +18,8 @@ def create_app():
 
 
     db.init_app(app)
+    ckeditor.init_app(app)
+
 
 
 

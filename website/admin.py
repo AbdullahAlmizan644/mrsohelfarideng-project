@@ -1,8 +1,11 @@
 from flask import Blueprint, render_template,session,flash,request,redirect
-from website.__init__ import db
+from website.__init__ import db,create_app
+import os
+from werkzeug.utils import secure_filename
+from datetime import datetime
 
 admin=Blueprint('admin', __name__)
-
+app=create_app()
 
 @admin.route("/dashboard")
 def dashboard():
@@ -50,11 +53,63 @@ def user_table():
         cur.execute("SELECT * FROM users")
         users=cur.fetchall()
 
-
         cur=db.connection.cursor()
         cur.execute("SELECT count(sno) from users ")
         total_user=cur.fetchone()
         return render_template("admin/user_table.html",users=users,total_user=total_user)
 
+    else:
+        return redirect("/admin_login")
+
+
+
+
+@admin.route("/user_history")
+def user_history():
+    if "admin" in session:
+        cur=db.connection.cursor()
+        cur.execute("SELECT * FROM user_history")
+        user_history=cur.fetchall()
+
+        cur=db.connection.cursor()
+        cur.execute("SELECT count(sno) from user_history")
+        total_history=cur.fetchone()
+        return render_template("admin/user_history.html",user_history=user_history,total_history=total_history)
+    else:
+        return redirect("/admin_login")
+
+
+
+@admin.route("/write_notice",methods=["GET","POST"])
+def write_notice():
+    if "admin" in session:  
+        if request.method=="POST":
+            title=request.form.get('title')
+            image = request.files['image']
+            content=request.form.get('content')
+
+
+            image.save(os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(image.filename)))
+            cur=db.connection.cursor()
+            cur.execute("INSERT INTO notice(title,image,content,date) VALUES (%s,%s,%s,%s)",(title,image.filename,content,datetime.now(),))
+            db.connection.commit()
+            return redirect("/all_notice")
+
+        return render_template("admin/write_notice.html")
+    else:
+        return redirect("/admin_login")
+    
+    
+@admin.route("/all_notice",methods=["GET","POST"])
+def all_notice():
+    if "admin" in session:
+        cur=db.connection.cursor()
+        cur.execute("SELECT * FROM notice")
+        notices=cur.fetchall()
+
+        cur=db.connection.cursor()
+        cur.execute("SELECT count(id) from notice")
+        total_notice=cur.fetchone()
+        return render_template("admin/all_notice.html",notices=notices,total_notice=total_notice)
     else:
         return redirect("/admin_login")

@@ -46,6 +46,7 @@ def token_generator(all_token):
     
 
 
+
 @view.route("/token",methods=["GET","POST"])
 def buy_token():
     global token
@@ -99,10 +100,10 @@ def meter():
         return redirect("/login")
 
 
+
 @view.route("/card",methods=["GET","POST"])
 def card():
-    if "user" in session:
-    
+    if "user" in session:    
         if request.method=="POST":
             meter_number=request.form.get("meter_number")
             get_token=request.form.get("token")
@@ -151,7 +152,11 @@ def card():
 
 @view.route("/notice")
 def notice():
-    return render_template("view/notice.html")
+    cur=db.connection.cursor()
+    cur.execute("SELECT * FROM notice")
+    notice=cur.fetchall()
+    return render_template("view/notice.html",notice=notice)
+
 
 
 @view.route("/tips")

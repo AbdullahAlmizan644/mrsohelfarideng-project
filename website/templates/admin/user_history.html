@@ -1,0 +1,83 @@
+{% extends "admin/base.html"%}
+{% block title %} Users History  {% endblock %}
+{% block head %}
+{{super()}}
+<style>
+    
+</style>
+{% endblock %}
+{% block content%}
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">users</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item active">Dashboard</li>
+                        </ol>
+                        <div class="row">
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-primary text-white mb-4">
+                                    <div class="card-body">Total User_history</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <h2>{{ total_history.0 }}</h2>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                DataTable Example
+                            </div>
+                            <div class="card-body">
+                                <table id="datatablesSimple">
+                                    <thead>
+                                        <tr>
+                                            <th>user_id</th>
+                                            <th>user</th>
+                                            <th>meter number</th>
+                                            <th>request amount</th>
+                                            <th>token</th>
+                                            <th>unit</th>
+                                            <th>status</th>
+                                            <th>date</th>
+                                            <th>sno</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>user_id</th>
+                                            <th>user</th>
+                                            <th>meter number</th>
+                                            <th>request amount</th>
+                                            <th>token</th>
+                                            <th>unit</th>
+                                            <th>status</th>
+                                            <th>date</th>
+                                            <th>sno</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        {% for user in user_history %}
+                                        <tr>
+                                            <td>{{ user.0}}</td>
+                                            <td>{{ user.1}}</td>
+                                            <td>{{ user.2}}</td>
+                                            <td>{{ user.3}}</td>
+                                            <td>{{ user.4}}</td>
+                                            <td>{{ user.5}}</td>
+                                            <td>{{ user.6}}</td>
+                                            <td>{{ user.7}}</td>
+                                            <td>{{ user.8}}</td>
+                                        </tr>
+                                        {% endfor%}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+
+
+{% endblock %}
